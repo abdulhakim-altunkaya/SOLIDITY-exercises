@@ -5,6 +5,16 @@ contract PersonDetails {
       string name;
       uint age;
    }
+   Person newPerson;
 
+   function setPerson() public {
+      newPerson = Person('Harro', 34);
+   }
+   function getPersonName() public view returns (string memory) {
+      return newPerson.name;
+   }
+   function getPersonAge() public view returns(uint) {
+       return newPerson.age;
+   }
    
 }
