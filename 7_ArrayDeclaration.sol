@@ -9,6 +9,5 @@ contract ArrayDeclaration {
         myArray[1] = 70;
 
         return myArray;
-
     }
 }
