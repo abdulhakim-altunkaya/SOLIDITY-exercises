@@ -10,5 +10,8 @@ contract DataTypes {
     address owner = msg.sender;
     bytes32 byteMes = "hello byte";
     string stringMes = "hello string";
-
+    
+    function getVariables() public view returns(uint, int, uint8, bool, address, bytes32, string memory) {
+        return( myNumber, yourNumber, herNumber, isSolidityCool, owner, byteMes, stringMes);
+    }
 }
