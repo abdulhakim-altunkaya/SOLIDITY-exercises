@@ -4,5 +4,4 @@ contract Require{
     function checkInput(uint _input) public view returns(string memory) {
 
     }
-     
 }
