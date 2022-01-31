@@ -1,2 +1,2 @@
-# simple-wallet-solidity
-This is simple wallet project created with Solidity smart contract language
+# simple-solidity-exercises
+This is a simple solidity exercise folder. 
