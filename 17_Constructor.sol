@@ -5,8 +5,8 @@ contract Constructor {
     string public myWord2;
 
     constructor() public {
-        myWord = "Constructor works";
-        myWord = "Solidity is nice";
+        myWord = "Word1: Constructor works";
+        myWord2 = "Word2: Solidity is nice";
     }
 
     function getWord() public view returns(string memory) {
