@@ -2,18 +2,22 @@ pragma solidity >=0.8.7;
 
 contract Date {
 
-    uint public lastMoment;
-    uint public minutesOne;
-
-    function setTime() public {
-        lastMoment = block.timestamp;
-    }
-    function setTime2() public {
-        minutesOne = 1 minutes;
+    uint public myNumber1;
+    uint public myNumber2;
+    uint public myNumber3;
+    
+    constructor() {
+        uint randomNumber = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.difficulty)));
+        myNumber2 = randomNumber;
     }
     
-    function isTimeFinished() public view returns(bool) {
-        return(block.timestamp > (lastMoment + minutesOne) );
+    function getDifficulty() public {
+        myNumber1 = block.difficulty;
     }
-    
+    function getSeconds() public {
+        myNumber3 = 2 minutes;
+    }
+    function getRandomNumber2() public {
+        
+    }
 }
