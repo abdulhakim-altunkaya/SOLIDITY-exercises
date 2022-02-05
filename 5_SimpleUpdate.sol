@@ -1,4 +1,4 @@
-pragma solidity>=0.4.22;
+pragma solidity >=0.8.7;
 
 contract SimpleUpdate {
     uint data;
