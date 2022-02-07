@@ -12,4 +12,8 @@ contract HelloWorld {
         myWord = _myWord;
     }
 
+    function getWord() public view returns(string memory) {
+        return myWord;
+    }
+
 }
