@@ -7,7 +7,17 @@ contract Arrays {
         ids.push(id);
     }
 
+    //if you want to return a single integer
     function getIds(uint indexNumber) public view returns(uint) {
         return ids[indexNumber];
+    }
+
+    // if you want to return whole array
+    function getIds2() public view returns(uint[] memory) {
+        return ids;
+    }
+
+    function arrayLength() public view returns(uint) {
+        return ids.length;
     }
 }
