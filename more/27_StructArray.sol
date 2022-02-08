@@ -24,11 +24,20 @@ contract Crud {
         }
     }
 
-    function updateName(uint number2, string memory freshName) public {
+    function updateElement(uint number2, string memory freshName) public {
         for(uint i=0; i<myArray.length; i++) {
             if(i == number2) {
                 myArray[i].name = freshName;
             }
         }
     }
+
+    function deleteElement(uint number3) public {
+        for(uint i=0; i<myArray.length; i++) {
+            if(i == number3) {
+                delete myArray[i];
+            }
+        }
+    }
+    
 }
