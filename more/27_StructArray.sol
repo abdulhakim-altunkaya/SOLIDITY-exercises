@@ -6,7 +6,10 @@ contract Crud {
         string name;
     }
     UserStruct[] public myArray;
-    uint public indexId;
+    uint public indexId = 1;
+    // the indexId must be 1. If not our id will start from 0.
+    // And if it starts from 0, it can collide with non-existing records.
+    // because non-existing records, will also have indexId 0.
 
     function createUser(string memory newName) public {
         myArray.push(UserStruct(indexId, newName));
