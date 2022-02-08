@@ -16,20 +16,18 @@ contract Crud {
         return myArray;
     }
 
-    function getElement(uint index) public view returns(UserStruct memory) {
+    function getElement(uint number1) public view returns(UserStruct memory) {
         for(uint i=0; i<myArray.length; i++) {
-            if(i == index) {
-                return myArray[index];
+            if(i == number1) {
+                return myArray[number1];
             }
         }
     }
 
     function updateElement(uint number2, string memory freshName) public {
-        for(uint i=0; i<myArray.length; i++) {
-            if(i == number2) {
-                myArray[i].name = freshName;
-            }
-        }
+        uint i = loop(number2);
+        myArray[i].name = freshName;
+
     }
 
     function deleteElement(uint number3) public {
@@ -39,5 +37,15 @@ contract Crud {
             }
         }
     }
-    
+
+    function loop(uint number4) internal view returns(UserStruct) {
+        for(uint i=0; i<myArray.length; i++) {
+            if(i == number4) {
+                return i;
+            }
+        }
+    }
+
+
+
 }
