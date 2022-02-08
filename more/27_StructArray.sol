@@ -24,6 +24,14 @@ contract Crud {
         }
     }
 
+    function loop(uint number4) internal view returns(UserStruct) {
+        for(uint i=0; i<myArray.length; i++) {
+            if(i == number4) {
+                return i;
+            }
+        }
+    }
+
     function updateElement(uint number2, string memory freshName) public {
         uint i = loop(number2);
         myArray[i].name = freshName;
@@ -36,15 +44,10 @@ contract Crud {
                 delete myArray[i];
             }
         }
+        revert("user does not exist");
     }
 
-    function loop(uint number4) internal view returns(UserStruct) {
-        for(uint i=0; i<myArray.length; i++) {
-            if(i == number4) {
-                return i;
-            }
-        }
-    }
+
 
 
 
