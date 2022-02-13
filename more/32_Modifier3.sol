@@ -1,13 +1,13 @@
-contract A {
-    uint public myNumber = 14;
-    function foo() view external returns(uint) {
-        return myNumber;
-    }
+pragma solidity >=0.8.7;
+
+contract myContract { 
+
+   function f1(bool arg1, uint arg2) returns(uint);
 }
 
-contract B {
-  function callFoo(address addrA) external view returns(uint) {
-    uint result = A(addrA).foo();
-    return result;
+contract YourContract {
+  function doYourThing(address addressOfA) public returns(uint) {
+    A my_a = A(addressOfA);
+    return my_a.f1(true, 3);
   }
 }
