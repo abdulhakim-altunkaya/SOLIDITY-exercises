@@ -31,7 +31,7 @@ contract B {
 
 // here we can say public and result will be same. However, public costs more gas than external.
 // because external functions can be accessed only externally and public functions can be accessed both 
-// externally and internally. In this Contract B and Contract C functions, we do not to access them normally (public),
+// externally and internally. In this Contract B and Contract C functions, we do not NEED to access them internally (public),
 // we want to access them only from the Contract A., which means only externally. So, after declaring them external, 
 // if I try to access them not from contract A, it will give error.
 
