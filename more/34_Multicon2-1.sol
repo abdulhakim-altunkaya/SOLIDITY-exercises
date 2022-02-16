@@ -1,7 +1,8 @@
 // SPDX-Licence-Identifier: MIT
+
 pragma solidity >=0.8.7;
 
-import "./35_Multicon2-2.sol";
+import "./13_Multicon2-2.sol";
 
 contract A {
     address myAddress;
@@ -11,7 +12,7 @@ contract A {
     }
 
     function getText(string memory _anyText2) external view returns(string memory) {
-        B b = B(myAddress);
+        InterfaceB b = InterfaceB(myAddress);
         return b.getString(_anyText2);
     }
 }

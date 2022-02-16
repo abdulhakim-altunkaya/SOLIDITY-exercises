@@ -1,12 +1,17 @@
-// SPDX-Licence-Identifier: MIT
+//SPDX-Licence-Identifier: MIT
 pragma solidity >=0.8.7;
 
-contract InterfaceB {
+interface InterfaceB {
     function getString(string memory _anyText) external pure returns(string memory);
+
 }
 
 contract B {
-    function getString(string memory _anyText) external pure returns(string memory) {
+    function getString(string memory _anyText) external pure returns(string memory) {        
         return _anyText;
+    }
+
+    function getHello() external pure returns(string memory) {
+        return "Hi";
     }
 }
