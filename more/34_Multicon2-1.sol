@@ -1,6 +1,7 @@
 // SPDX-Licence-Identifier: MIT
-
 pragma solidity >=0.8.7;
+
+import "./35_Multicon2-2.sol";
 
 contract A {
     address myAddress;
@@ -15,8 +16,3 @@ contract A {
     }
 }
 
-contract B {
-    function getString(string memory _anyText) external pure returns(string memory) {
-        return _anyText;
-    }
-}
