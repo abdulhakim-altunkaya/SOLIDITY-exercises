@@ -1,6 +1,6 @@
 pragma solidity >=0.8.7;
 
-contract myArray {
+contract arrayContract {
 
     uint[] myArray;
 
