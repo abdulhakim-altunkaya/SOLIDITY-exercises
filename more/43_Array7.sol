@@ -3,6 +3,7 @@ pragma solidity >=0.8.7;
 contract arrayContract {
 
     bytes32[] myArray;
+    bytes4 myword = "word";
 
     function setValues() external {
         myArray = [bytes32("flower"), bytes32("rose")];
@@ -15,5 +16,6 @@ contract arrayContract {
     function getValues() external view returns(bytes32[] memory) {
         return  myArray;
     }
+
 
 }
