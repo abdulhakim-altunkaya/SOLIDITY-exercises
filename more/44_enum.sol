@@ -16,4 +16,7 @@ contract EnumExample {
     function getSize() external view returns(BurgerSizes) {
         return choice;
     }
+    function getDefaultSize() external pure returns(BurgerSizes) {
+       return defaultchoice;
+    }
 }
