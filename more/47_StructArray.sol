@@ -9,14 +9,17 @@ contract StructArray {
         string color;
     }
     Flowers flower;
+    Flowers flower2;
 
     function setValue() external {
         flower = Flowers("rose", "white");
+        flower2 = Flowers("tulip", "blue");
     }
 
     Flowers[] myArray;
     function addArray() external {
         myArray.push(flower);
+        myArray.push(flower2);
     }
 
     function getArray() external view returns(Flowers[] memory) {
