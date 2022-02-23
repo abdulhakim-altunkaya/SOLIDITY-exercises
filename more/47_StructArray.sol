@@ -14,10 +14,13 @@ contract StructArray {
         flower = Flowers("rose", "white");
     }
 
-    function getStruct() external view returns(Struct memory) {
-        return flower;
+    //you cannot return a record of a struct. You can only
+    // return an individual data type in struct. In this below
+    // it is flower name which is a string.
+    function getStruct() external view returns(string memory) {
+        return flower.name;
     }
-    function getStructValue() external view returns() {
 
-    }
+    function getStructValue() external view returns(string memory) {
+        return flower.color;
 }
