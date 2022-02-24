@@ -1,12 +1,10 @@
 //SPDX-Licence-Identifier: MIT
 pragma solidity >=0.8.7;
 
-contract TodosList {
-    struct Todos {
-        string task;
-        bool compeleted;
-    }
+import "./48_StructArray2-1.sol";
 
+contract TodosList {
+    //Todos struct is imported from other document
     Todos[] public todosArray;
 
     function addTasks(string memory task, bool completion) external {
