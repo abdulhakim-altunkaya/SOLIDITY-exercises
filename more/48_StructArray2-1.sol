@@ -12,4 +12,8 @@ contract TodosList {
     function addTasks(string memory task, bool completion) external {
         todosArray.push(Todos(task, completion));
     }
+    function getValues(uint indexNumber) external view returns(string memory) {
+        return todosArray[indexNumber].task;
+    }
+}
 }
