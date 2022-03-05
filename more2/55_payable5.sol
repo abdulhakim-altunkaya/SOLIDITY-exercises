@@ -13,6 +13,8 @@ contract Payable5 {
       owner = payable(msg.sender);  
     }
 
+    //Here we are sending ether to this function. What
+    // this means I am not sure I know.
     function deposit() external payable {
 
     }
