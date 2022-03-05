@@ -16,5 +16,8 @@ contract PersonDetails {
    function getPersonAge() public view returns(uint) {
        return newPerson.age;
    }
+   function getPerson() external view returns(Person memory){
+      return newPerson;
+   }
    
 }

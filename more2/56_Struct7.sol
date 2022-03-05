@@ -10,17 +10,16 @@ contract FunctionTest {
 
     Numbers myNumber;
 
-    function getStruct(uint x, uint y) external {
+    function defineStruct(uint x, uint y) external {
         myNumber = Numbers(x, y);
     }
 
-    function addNumbers(uint a, uint b) external pure returns(uint) {
-        return a+b;
+    function addNumbers() external view returns(uint) {
+        return myNumber.a + myNumber.b;
     }
 
     // here it is view because a pure function cannot read variables that are not inside the function. 
     function getStruct() external view returns(Numbers memory) {
         return myNumber;
     }
-
 }
