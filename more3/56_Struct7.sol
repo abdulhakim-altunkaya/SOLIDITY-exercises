@@ -1,25 +1,30 @@
 //SPDX-Licence-Identifier: MIT
 
-pragma solidity >=0.8.7;
+pragma solidity >= 0.8.7;
 
-contract FunctionTest {
-    struct Numbers {
-        uint a;
-        uint b;
+contract StructArray1 {
+    struct Cities {
+        string name;
+        string country;
+        uint id;
     }
+    Cities var1 = Cities("Windhoek", "Namibia", 1);
+    Cities var2 = Cities("Luanda", "Angola", 2);
+    Cities[] myArray;
 
-    Numbers myNumber;
-
-    function defineStruct(uint x, uint y) external {
-        myNumber = Numbers(x, y);
+    function addArray() external {
+        myArray.push(var1);
     }
-
-    function addNumbers() external view returns(uint) {
-        return myNumber.a + myNumber.b;
+    function addArray2() external {
+        myArray = [Cities("Luanda", "Angola", 2)];
     }
+    function getLength() external view returns(uint){
+        return myArray.length;
+    }
+    uint myNumber = 5;
+    uint[] myArray2 = [1, 2, 3, myNumber];
 
-    // here it is view because a pure function cannot read variables that are not inside the function. 
-    function getStruct() external view returns(Numbers memory) {
-        return myNumber;
+    function getArray() external view returns(Cities[] memory) {
+        return myArray;
     }
 }
