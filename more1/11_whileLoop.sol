@@ -11,7 +11,7 @@ contract Types {
     function loop() public returns(uint[] memory){
         while(j < 100) {
             j = j + 7;
-            data.push(j);
+            data.push(j); 
         }
         return data;
 

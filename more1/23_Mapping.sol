@@ -1,6 +1,7 @@
 pragma solidity >=0.8.7;
 
 contract Mapping {
+
     // Here I am createing a mapping
     mapping(address => uint) public myNumbers;
 
@@ -15,6 +16,7 @@ contract Mapping {
     //Here I am getting the value of the object,  which is 
     // my account and the number value I assigned above
     function getNumber() public view returns(uint) {
-        return myNumbers[msg.sender];
+        return myNumbers[msg.sender]; 
     }
+
 }
