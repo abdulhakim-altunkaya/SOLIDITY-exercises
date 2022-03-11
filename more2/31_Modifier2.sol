@@ -7,7 +7,7 @@ contract Modifier {
     bool public result = false;
 
     constructor() {
-        name = "Harro";
+        name = "Harro"; 
         surname = "Schwan";
     }
 
