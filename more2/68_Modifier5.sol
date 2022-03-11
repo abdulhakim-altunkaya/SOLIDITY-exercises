@@ -7,6 +7,7 @@ contract ModifierTest {
     bool public paused;
     uint public myNumber;
 
+    //My first Modifier
     modifier checkPause(){
         require(!paused, "paused");
         _;
@@ -24,5 +25,13 @@ contract ModifierTest {
         myNumber +=30;
     }
 
+    //Here I created another modifier
+    modifier smallHundred(uint _n){
+        require(_n<100, "number should be smaller than 100");
+        _;
+    }
 
+    function anotherTest(uint _n) external pure smallHundred(_n) returns(uint){
+        return 1000+_n;
+    }
 }
