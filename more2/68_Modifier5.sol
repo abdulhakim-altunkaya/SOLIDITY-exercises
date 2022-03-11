@@ -34,4 +34,26 @@ contract ModifierTest {
     function anotherTest(uint _n) external pure smallHundred(_n) returns(uint){
         return 1000+_n;
     }
+
+    //Here is third Modifier called "Sandwich"
+    modifier smallTen(uint _n){
+        myNumber +=_n; //First executed
+        _;
+        myNumber = myNumber*10; //third executed
+    }
+
+    function thirdModifier(uint _n) external smallTen(_n) {
+        myNumber += 3; // second executed
+    }
+
+    //Here is fourth Modifier called "Sandwich"
+    modifier sandwich(){
+        myNumber += 10;
+        _;
+        myNumber *= 2;
+    }
+
+    function fourthModifier() external sandwich{
+        myNumber +=1;
+    }
 }
