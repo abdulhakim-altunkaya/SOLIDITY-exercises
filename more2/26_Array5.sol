@@ -17,6 +17,7 @@ contract Arrays {
         return ids;
     }
 
+    // if you want to return array length
     function arrayLength() public view returns(uint) {
         return ids.length;
     }

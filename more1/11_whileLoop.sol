@@ -15,7 +15,7 @@ contract Types {
         }
         return data;
 
-    }
+    } 
     /* thought I could just say uint public myNumber = data[2] but no, evm gives error.
     I think it is because when we need to run loop() function so that data[2] can exist.
     As we run contract, contract doesnt call loop by itself, that's why it cant see any value

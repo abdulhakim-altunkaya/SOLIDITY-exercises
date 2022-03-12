@@ -10,5 +10,5 @@ contract forLoop {
             myArray.push(baseNumber);
         }
         return myArray;
-    }
+    } 
 }

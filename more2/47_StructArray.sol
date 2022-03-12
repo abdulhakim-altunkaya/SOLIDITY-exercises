@@ -16,25 +16,26 @@ contract StructArray {
         flower2 = Flowers("tulip", "blue");
     }
 
+    //Create a struct variables array and add struct variables to it.
     Flowers[] myArray;
     function addArray() external {
         myArray.push(flower);
         myArray.push(flower2);
     }
 
+    //Return the whole struct variable array
     function getArray() external view returns(Flowers[] memory) {
         return myArray;
     }
 
-    //you cannot return a record of a struct. You can only
-    // return an individual data type in struct. In this below
-    // it is flower name which is a string.
+    //Return the individual values of the struct variable
     function getName() external view returns(string memory) {
         return flower.name;
     }
 
-    function getColor() external view returns(string memory) {
-        return flower.color;
+    //Return the whole struct variable
+    function getColor() external view returns(Flowers memory) {
+        return flower;
     }
 
 }
