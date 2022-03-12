@@ -10,4 +10,4 @@ contract ForLoop2 {
         }
         return totalSum;
     }
-}
+} 
