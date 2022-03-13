@@ -42,14 +42,15 @@ contract FixedSize {
         return a;
     }
     // here is the second way to initialize a fixed-size array in memory, add value to it
-    // and then return it.
+    // and then return it. Returning array can drain all the gas. So, be sure to return small arrays only.
     function memoryArray2(uint _n, uint _m, uint _k) external pure returns(uint[3] memory) {
         uint[3] memory a = [_n, _m, _k];
         return a;
     }
 
 
-    //This is how you return an array with fixed size.Look at return
+    // This is how you return an array with fixed size.Look at return
+    // Returning array can drain all the gas. So, be sure to return small arrays only.
     function getArray() external view returns(uint[3] memory) {
         return myArray;
     }

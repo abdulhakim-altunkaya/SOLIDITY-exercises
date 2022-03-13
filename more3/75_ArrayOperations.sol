@@ -12,7 +12,7 @@ contract ArrayOperations {
     }
 
     // WAY-2 Adding elements
-    function addArray(uint d) external {
+    function addArray2(uint d) external {
         myArray.push(d);
     }
 
@@ -33,9 +33,23 @@ contract ArrayOperations {
         delete myArray[m];
     }
 
+    // To pop an element from any place inside the array:
+    // require statements makes sure our for loop will not collapse
+    // if somebody tries to delete an index higher than the array length
+    // if our array has only 1 element (in this case, "0<0" is fine actually, it wont give error)
+    function popAnyArray2(uint x) external {
+        require(myArray.length > 0, "array has no value");
+        require(x < myArray.length, "you can delete only existing elements");
+        uint myLength = myArray.length - 1;
+        for(uint myIndex = x; myIndex<myLength; myIndex++){
+            myArray[myIndex] = myArray[myIndex+1];
+        }
+        myArray.pop();
+    }
+
     //This is a regular return for dynamic array
-    // if the array is too big, then better not to return it, because it might drain all the gas.
-    function getArrayLocals() external view returns(uint[] memory) {
+    // Returning a big array can drain all your gas. Keep this in mind in production.
+    function getArray() external view returns(uint[] memory) {
         return myArray;
     }
 }
