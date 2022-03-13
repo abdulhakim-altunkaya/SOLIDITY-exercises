@@ -3,10 +3,38 @@
 pragma solidity >=0.8.7;
 
 contract ArrayOperations {
-    //create a fixed size array
-    uint[3] public myArray;
+    //create a dynamic size array
+    uint[] myArray;
 
-    function addArray(uint _n) external {
-        myArray.push(_n);
+    // WAY-1 Adding elements
+    function addArray(uint a, uint b, uint c) external {
+        myArray = [a, b, c];
+    }
+
+    // WAY-2 Adding elements
+    function addArray(uint d) external {
+        myArray.push(d);
+    }
+
+    // Updating array
+    function updateArray(uint x) external {
+        myArray[1] = x;
+    }
+
+    // POP AND DELETE
+    // Pop removes last element and shrinks the size of array by 1.
+    function popArray() external {
+        myArray.pop();
+    }   
+
+    // Delete does not remove the element, it returns it to its 
+    // default value which is "0" in uint[] case. So, array length remains the same.
+    function deleteArrayElement(uint m) external {
+        delete myArray[m];
+    }
+
+    //This is a regular return for dynamic array
+    function getArrayLocals() external view returns(uint[] memory) {
+        return myArray;
     }
 }
