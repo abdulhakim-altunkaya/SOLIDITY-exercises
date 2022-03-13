@@ -34,6 +34,7 @@ contract ArrayOperations {
     }
 
     //This is a regular return for dynamic array
+    // if the array is too big, then better not to return it, because it might drain all the gas.
     function getArrayLocals() external view returns(uint[] memory) {
         return myArray;
     }
