@@ -16,6 +16,17 @@ contract MappingOps {
         return balances[msg.sender];
     }
 
+    //4. update values from a specific key:
+    function updateMapping() external {
+        balances[msg.sender] +=1000;
+    }
+
+    //5. DELETE: making the value to its default. This doesnt delete the record, it just 
+    // defaults its value. In uint case default is "0"
+    function deleteMapping() external {
+        delete balances[msg.sender];
+    }
+
     //4. get values from a specific key:
     function getMapping2() external view returns(uint) {
         return balances[address(1)];
