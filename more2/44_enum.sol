@@ -3,7 +3,13 @@
 pragma solidity >=0.8.7;
 
 contract EnumExample {
-    enum BurgerSizes {CHILDREN, SIZE1, SIZE2, SIZE3};
+    enum BurgerSizes {
+        CHILDREN, 
+        SIZE1, 
+        SIZE2, 
+        SIZE3
+    };
+    
     BurgerSizes choice;
     BurgerSizes constant defaultchoice = BurgerSizes.SIZE2;
 
