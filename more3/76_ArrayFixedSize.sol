@@ -30,7 +30,7 @@ contract FixedSize {
     }
 
 
-    // Memory arrays with dynamic length can be created using the "new" operator. 
+    // Memory arrays with fixed length can be created using the "new" operator. 
     // As opposed to storage arrays, it is not possible to resize memory arrays
     // (e.g. the .push member functions are not available). Be careful how you add values
     // to the array.
