@@ -4,7 +4,7 @@ contract Constructor {
     string public myWord;
     string public myWord2;
 
-    constructor() public {
+    constructor() {
         myWord = "Word1: Constructor works";
         myWord2 = "Word2: Solidity is nice";
     }
