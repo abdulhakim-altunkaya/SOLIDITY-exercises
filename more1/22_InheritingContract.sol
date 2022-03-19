@@ -9,5 +9,9 @@ contract Inheriting is DataTypes {
     function newValue() public {
         stringMes = "changed content";
     }
+
+    function callFunction() external view {
+        getVariables();
+    }
     
 }
