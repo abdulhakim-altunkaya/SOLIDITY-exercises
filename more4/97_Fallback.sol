@@ -7,6 +7,11 @@ contract Main {
     And alternative to fallback() is receive() function. But receive() 
     We must declare fallback and receive functions as "payable" so that they can receive ether.
     
+    Declaring fallback function is cruel because any wrong call will cost caller ETH.
+
+    Declaring receive function is more humane, because if value not defined the receive function will not charge anything 
+    and wrong calls will not cost eth.
+    
      is msg.data empty?
             /           \
            Yes          No
