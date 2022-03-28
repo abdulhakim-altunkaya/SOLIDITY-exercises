@@ -28,15 +28,17 @@ contract Assembly {
     function slotMemory() external pure returns(bytes memory) {
         bytes memory x;
         assembly {
-            let a := mload(0x40) //mload finds a suitable slot for your data. 0x40
+            let a := mload(0x40) //mload loads a slot for your data. 0x40 finds the next free slot
             mstore(a, 1) //mstore puts the data(in this case a uint: 1) in the slot "a"
+            sstore(a, 10) //this data will be persistent, saved in blockchain
             x := a //this is only for my sandbox, I want to see the slot. 
         }
         return x;
     }
+
 }
 
-/*assembly is a low level sub-language of solidity that let us to 
+/*assembly is a low l evel sub-language of solidity that let us to 
 directly manipulate EVM opcodes.
 
 Solidity is high level language and computers dont understand it. So, the code we write
