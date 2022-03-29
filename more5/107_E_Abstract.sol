@@ -6,6 +6,7 @@ pragma solidity >=0.8.7;
 // a function without implemenration. 
 abstract contract AB {
     string public myWord = "schkria";
+    uint myNumber = 5;
 
     function changeWord() external virtual;
     //function without implementation must be marked as virtual.
@@ -30,6 +31,7 @@ They are not for compiling/deploying. They cant be compiled and deployed.
 1) Inside the abstract you can modify functions, 
 2) Abstract contracts can have variables
 3) Abstract contracts can have one constructor
+
 4) Interfaces cannot have any functions implemented
 5) Interfaces cannot inherit other contracts or interfaces 
 (contracts can however inherit interfaces just as they would inherit other contracts)
