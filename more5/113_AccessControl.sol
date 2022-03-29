@@ -6,7 +6,7 @@ contract AccessControl {
     //This line is only for testing. After deployment, you can enter this in the second input
     //field. For the first input field, make ADMIN as public to get the bytes32. And paster these 
     //two on "allRoles" input area after deployment.
-    address public msgsender = msg.sender;
+    address private msgsender = msg.sender;
 
 
     //Event are not obligatory but we will probably need it to see changes in user roles.
@@ -22,7 +22,9 @@ contract AccessControl {
     //Instead of these two line down, I can say: string private constant ADMIN = "ADMIN" but this
     //will cost more gas. 
     bytes32 private constant ADMIN = keccak256(abi.encodePacked("ADMIN"));
+    //0xdf8b4c520ffe197c5343c6f5aec59570151ef9a492f2c624fd45ddde6135ec42
     bytes32 private constant USER = keccak256(abi.encodePacked("USER"));
+    //0x2db9fd3d099848027c2383d0a083396f6c41510d7acfd92adc99b6cffcf31e96
 
     //here modifier will check if modifier parameter exists for the msg.sender
     //If it exists, it will continue. For parameter we will use "ADMIN" keyword.
@@ -53,6 +55,14 @@ contract AccessControl {
     function grandRole2(bytes32 _role, address _account) external onlyOwner(ADMIN) {
         grantRole1(_role, _account);
     }
+
+    function revokeRole1(bytes32 _role, address _account) internal {
+        allRoles[_role][_account] = false;
+        emit RevokeRole(_role, _account);
+    }
+
+    function revokeRole2(bytes32 _role, address _account) external onlyOwner(ADMIN) {
+        revokeRole1(_role, _account);
+    }
     
 }
-
