@@ -14,6 +14,7 @@ contract SelfDestruct {
     //it means before clicking deploy button, you can insert some value in msg.value input area.
     constructor() payable {}
 
+    //You can kill your contract from inside or from another contract.
     function kill() external {
         selfdestruct(payable(msg.sender));
     }
@@ -24,10 +25,21 @@ contract SelfDestruct {
 
     //this is needed so that we can send some ether to our contract for testing. Enter
     // some value in msg.value and click on transact button.
-    fallback() external payable{}
+    // If you use fallback(), you need to tag address of killOther function as payable
+    // fallback() external payable{}
 
     function getBalance() external view returns(uint) {
         return address(this).balance;
+    }
+}
+
+contract Killer {
+    function getBalance() external view returns(uint) {
+        return address(this).balance;
+    }
+
+    function killOther(address otherContract) external {
+        SelfDestruct(otherContract).kill();
     }
 }
 
