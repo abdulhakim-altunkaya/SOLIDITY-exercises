@@ -26,6 +26,7 @@ contract SelfDestruct {
     //this is needed so that we can send some ether to our contract for testing. Enter
     // some value in msg.value and click on transact button.
     // If you use fallback(), you need to tag address of killOther function as payable
+    
     // fallback() external payable{}
 
     function getBalance() external view returns(uint) {

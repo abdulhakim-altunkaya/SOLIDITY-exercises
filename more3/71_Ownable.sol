@@ -2,7 +2,7 @@
 
 pragma solidity >=0.8.7;
 
-contract Ownable {
+contract Ownable { 
     //Ownable contract exists in almost all projects. You need understand
     // and memorize this syntax. First create an address and with constructor set
     // this address to msg.sender. This means, whoever deploys contract firsttime 
