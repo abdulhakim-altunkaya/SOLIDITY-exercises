@@ -51,7 +51,7 @@ contract Payable4 {
         require(mySuccess, "failed to send Ether");
     }
 
-    //in place of "1 ether", you can put "msg.data"
+    //in place of 123, you can put "msg.value"
 
 }
 
