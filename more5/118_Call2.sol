@@ -3,33 +3,36 @@
 pragma solidity >=0.8.7;
 
 contract TestCall {
-    string public message1;
-    uint public number1;
+    string public message;
+    uint public x;
 
-    event LogSomething(string message2);
+    event Log(string message);
 
     fallback() external payable{
-        emit LogSomething("easy money");
+        emit Log("fallback triggered");
     }
 
-    function foo(string memory message3, uint number2) external payable returns(bool, uint){
-        message1 = message3;
-        number1 = number2;
+    function foo(string memory _message, uint _x) external payable returns(bool, uint){
+        x = _x;
+        message = _message;
         return (true, 999);
     }
 }
 
-contract Call{
+contract Call {
+    function call1(address payable otherContract, string memory a, uint b) external {
+        TestCall(otherContract).foo(a, b);
+    }
+
+/* As a different thing than previous contract, we used "call" method to call function of a another
+contract. Bytes data variable is only for you to see.
+To use call method, we need to encode 1)the function name + 2)its parameters + 3)our values for parameters.
+The different thing here is I didnt have to specify the address as payable.  */
     bytes public data;
-    function callFoo(address otherContract) external {
-        (bool success, bytes memory _data) = otherContract.call{value:111}(abi.encodeWithSignature("foo(string,uint256)", "call foo", 123));
-        require(success, "call failed");
+
+    function callFoo(address _test) external payable{
+        (bool success, bytes memory _data) = _test.call{value: msg.value}(abi.encodeWithSignature("foo(string,uint256)", "hello", 123));
+        require(success, "failed to call");
         data = _data;
     }
-    //We need this fallback, because if not we cannot use above function
-    //because above function is spending gas when we click on it. And we have 0 in our account.
-    //So I put this fallback to first transfer some ether to the contract by using "transact"
-    //Then I called callFoo and it worked fine. 
-    fallback() external payable{}
-
 }

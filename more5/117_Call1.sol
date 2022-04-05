@@ -20,7 +20,9 @@ contract TestCall {
 }
 
 /*Here this is the meaning of the exercise actually. I am calling payable foo
-function from another contract. Fallback and event has no meaning for this exercise.*/
+function from another contract. Fallback and event has no meaning for this exercise.
+
+I can change TestCall contract state variables' values by using the function below.*/
 contract Call {
     function call1(address payable otherContract, string memory a, uint b) external {
         TestCall(otherContract).foo(a, b);
