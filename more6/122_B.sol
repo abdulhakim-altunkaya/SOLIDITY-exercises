@@ -2,10 +2,18 @@
 
 pragma solidity >=0.8.7;
 
-contract A {
-    string public myWord = "Nusaybin";
+interface IA {
+    function myWord() external view returns(string memory);
+    function changeWord(string memory a) external;
+}
 
-    function changeWord(string memory a) external {
-        myWord = a;
+contract InterfaceCaller {
+
+    function foo1(address otherContract) external view returns(string memory){
+        return IA(otherContract).myWord();
+    }
+
+    function foo2(address otherContract, string memory a) external {
+        IA(otherContract).changeWord(a);
     }
 }
