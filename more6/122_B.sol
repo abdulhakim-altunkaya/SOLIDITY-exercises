@@ -2,18 +2,16 @@
 
 pragma solidity >=0.8.7;
 
-interface IA {
-    function myWord() external view returns(string memory);
-    function changeWord(string memory a) external;
-}
+// IMPORT STATEMENT-INHERITANCE
 
-contract InterfaceCaller {
+import "./121_A.sol";
 
-    function foo1(address otherContract) external view returns(string memory){
-        return IA(otherContract).myWord();
-    }
+contract B is A {
 
-    function foo2(address otherContract, string memory a) external {
-        IA(otherContract).changeWord(a);
-    }
+
+
+
+    //The state of A does not change.
+    //The state of B changes.
+    //import statement used.
 }
