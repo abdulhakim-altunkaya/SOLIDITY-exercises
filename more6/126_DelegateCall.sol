@@ -17,7 +17,7 @@ contract A{
 }
 
 contract B{
-
+    /*Make sure the order of variables is totally the same as above*/
     uint public num;
     address public sender;
     uint public value;
@@ -40,5 +40,8 @@ contract B{
         require(success, "faile to call");
     }
 
+    /*Now I understand the importance of delegatecall. By seperating function implementation from the contract, 
+    you can later update the contract B without redeploying it. You will redeploy contract A instead. 
+    */
 }
 
