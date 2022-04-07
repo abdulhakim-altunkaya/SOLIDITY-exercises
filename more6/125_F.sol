@@ -2,21 +2,19 @@
 
 pragma solidity >=0.8.7;
 
-//DELEGATECALL - ABI.ENCODEWITHSELECTOR
+//CALL - ABI.ENCODEWITHSELECTOR
+
 import "./121_A.sol";
 
-contract H {
+contract F {
 
-    string public myWord = "Mardin";
-    
     function foo(address otherContract, string memory x) external {
-        (bool success, ) = otherContract.delegatecall(abi.encodeWithSelector(A.changeWord.selector, x));
+        (bool success, ) = otherContract.call(abi.encodeWithSelector(A.changeWord.selector, x));
         require(success, "failed to call");
     }
 
     //The state of E does not change.
     //The state of A changes.
     //Import statement is used.
-    //It is cheaper than Signature.
+    //it is cheaper than Signature.
 }
-
