@@ -3,22 +3,49 @@
 pragma solidity >=0.8.7;
 
 interface IERC20 {
+    //1.Total supply of ERC20 token.
     function totalSupply() external view returns(uint);
-    //Total supply of the token by the contract
 
+    //2.The amount of ERC20 token that a contract has.
     function balanceOf(address account) external view returns(uint);
-    //Current amount of the token the contract has
 
+    //3.This allows to transfer ERC20 token to be transferred from one contract to another.
     function transfer(address recipient, uint amount) external returns(bool);
-    //Contract can 
 
+    //5.Holder can set a certain limit for the spender here. Spender will be allowed to 
+    //spend only from the allowed amount.
     function allowance(address owner, address spender) external view returns(uint);
-    
-    function approve(address spender, uint amount) external returns(bool);
 
+    //4.Power of Attorney function: I can authorize another contract to transfer my tokens.
+    //In this case, spender will be authorized to transfer my tokens.
+    function approve(address spender, uint amount) external returns(uint);
+
+    //6. The spender can call this function, it will send from the holder(sender) to another
+    //recipient. amount is amount of transfer.
     function transferFrom(address sender, address recipient, uint amount) external returns(bool);
 
     event Transfer(address indexed from, address indexed to, uint amount);
     event Approval(address indexed owner, address indexed spender, uint amount);
+
 }
 
+contract ERC20 is IERC20 {
+    //Total supply of our token. If we mint, totalSupply will increase. If we burn, it will decrease.
+    uint public totalSupply;
+
+    //here we create a table to see how much of a token any account has.
+    //address is holder and uint is amount.
+    mapping(address => uint) public balanceOf; 
+
+    //The first address is the holder. The second address is the spender. uint is the allowed amount
+    mapping(address =>mapping(address => uint)) public allowance;
+
+    //Here are some metadata about our ERC20 token. Name and decimal. 
+    //Decimal means how many 
+    //Most ERC20 tokens have a decimal of 18.
+    string public name = "Test";
+    string public symbol = "TEST";
+    uint8 public decimals = 18; // Here it means 10**18 is equal to one of the tokens above. 
+    //For example, US Dollar has two decimals, 100 cents equals to 1 dollar. So in other words,
+    //it means 18 zeros.
+}
