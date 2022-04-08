@@ -29,7 +29,7 @@ interface IERC20 {
 
 }
 
-contract ERC20 is IERC20 {
+contract ERC20 {
     //Total supply of our token. If we mint, totalSupply will increase. If we burn, it will decrease.
     uint public totalSupply;
 
@@ -48,4 +48,16 @@ contract ERC20 is IERC20 {
     uint8 public decimals = 18; // Here it means 10**18 is equal to one of the tokens above. 
     //For example, US Dollar has two decimals, 100 cents equals to 1 dollar. So in other words,
     //it means 18 zeros.
+
+    function transfer(address recipient, uint amount) external returns(bool) {
+        balanceOf[msg.sender] -= amount;
+        balanceOf[recipient] += amount;
+        emit Transfer(msg.sender, recipient, amount);
+        return true;
+    }
+
+    
+
+    event Transfer(address indexed from, address indexed to, uint amount);
+    event Approval(address indexed owner, address indexed spender, uint amount);
 }
