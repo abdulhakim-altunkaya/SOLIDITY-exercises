@@ -18,9 +18,9 @@ interface IERC20 {
 
     //4.Power of Attorney function: I can authorize another contract to transfer my tokens.
     //In this case, spender will be authorized to transfer my tokens.
-    function approve(address spender, uint amount) external returns(uint);
+    function approve(address spender, uint amount) external returns(bool);
 
-    //6. The spender can call this function, it will send from the holder(sender) to another
+    //6. The spender can call this function, it will send tokens to another
     //recipient. amount is amount of transfer.
     function transferFrom(address sender, address recipient, uint amount) external returns(bool);
 
@@ -49,6 +49,8 @@ contract ERC20 {
     //For example, US Dollar has two decimals, 100 cents equals to 1 dollar. So in other words,
     //it means 18 zeros.
 
+    //Here we are transferring tokens from Holder to any recipient. That's why we are updating
+    //recipient and holder balance.
     function transfer(address recipient, uint amount) external returns(bool) {
         balanceOf[msg.sender] -= amount;
         balanceOf[recipient] += amount;
@@ -56,7 +58,40 @@ contract ERC20 {
         return true;
     }
 
-    
+    //We do not need the allowance function. Because we can set that by using the second mapping.
+    //Here Holder will set the allowance of the spender.
+    function approve(address spender, uint amount) external returns(bool) {
+        allowance[msg.sender][spender] = amount;
+        emit Approval(msg.sender, spender, amount);
+        return true;
+    }
+
+    //The spender can call this function, it will send tokens to another
+    //recipient. amount is amount of transfer.
+    function transferFrom(address sender, address recipient, uint amount) external returns(bool){
+        allowance[sender][msg.sender] -= amount;
+        balanceOf[sender] -= amount;
+        balanceOf[recipient] += amount;
+        emit Transfer(sender, recipient, amount);
+        return true;
+    }
+
+    //Minting function: This function is generally restricted. For this exercise,
+    //we will let the msg.sender to mint as much as he/she wants.
+    //Then in event section, we set sender to address(0).
+    function mint(uint amount) external {
+        balanceOf[msg.sender] += amount;
+        totalSupply += amount;
+        emit Transfer(address(0), msg.sender, amount);
+    }
+
+    //As we have created mint  function (create new toke), we should also create
+    // burn function (remove tokens from circulation).
+    function burn(uint amount) external {
+        balanceOf[msg.sender] -= amount;
+        totalSupply -= amount;
+        emit Transfer(msg.sender, address(0), amount);
+    }
 
     event Transfer(address indexed from, address indexed to, uint amount);
     event Approval(address indexed owner, address indexed spender, uint amount);
