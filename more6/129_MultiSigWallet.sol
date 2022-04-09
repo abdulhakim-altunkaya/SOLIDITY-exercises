@@ -11,7 +11,7 @@ contract MultiSigWallet {
     //Execute will fire when there is sufficient amount approvals, then the contract(Does
     // "contract" mean "transaction"?) can be executed.
     event Deposit(address indexed sender, uint amount);
-    event Submit(uint indexed txId);
+    event Submit(uint indexed txId); //txId is the index where the transaction is stored.
     event Approve(address indexed owner, uint indexed txId);
     event Revoke(address indexed owner, uint indexed txId);
     event Execute(uint indexed txId);
@@ -58,6 +58,41 @@ contract MultiSigWallet {
         }
         required = _required;
     }
+
+    receive() external payable{
+        emit Deposit(msg.sender, msg.value);
+    }
+    modifier onlyOwner() {
+        require(isOwner[msg.sender] == true);
+        _;
+        //instead of mapping, we could also search msg.sender inside the owners array
+        // but it is not gas efficient.. Thats why we are choosing mapping.
+    }
+
+    function submit(address _to, uint _value, bytes calldata _data) external onlyOwner{
+        Transaction memory newRecord = Transaction(_to, _value, _data, false);
+        transactions.push(newRecord);
+        emit Submit(transactions.length - 1); //txId is the index where the transaction is stored.
+    }
+
+    modifier txExists(uint txId) {
+        require(txId <transactions.length, "transaction is not submitted yet");
+        _;
+    }
+    modifier notApproved(uint txId) {
+        require(!approved[txId][msg.sender], "transaction is not approved yet");
+        _;
+    }
+    modifier notExecuted(uint txId) {
+        require(transactions[txId].executed != true, "transaction is not submitted yet");
+        _;
+    }
+
+    function approve(uint _txId) external onlyOwner txExists(_txId) notApproved(_txId) notExecuted(_txId){
+        approved[_txId][msg.sender] == true;
+        emit Approve(msg.sender, _txId);
+    }
+
 
 
 }
