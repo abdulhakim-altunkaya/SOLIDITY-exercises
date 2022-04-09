@@ -42,5 +42,22 @@ contract MultiSigWallet {
     //uint is the index of the transaction. 
     mapping(uint => mapping(address => bool)) public approved;
 
+    //Now we will create a constructor to define owners and number of required.
+    //Then we will create a for loop to save each _owners array element to the owner array above.
+    //Also we will save it to mapping above. Also we will check to make sure address(0) is not owner.
+    constructor(address[] memory _owners, uint _required) {
+        require(_owners.length >= 1, "owners required");
+        require(_required > 0 && _required <= _owners.length, "required number is wrong. either too small or too big");
+
+        for(uint i=0; i<_owners.length; i++){
+            address newOwner = _owners[i];
+            require(newOwner != address(0), "not valid address"); //make sure addresses are valid
+            require(!isOwner[newOwner], "this address already exists"); // make sure addresses are new
+            isOwner[newOwner] = true; // save address to mapping
+            owners.push(newOwner);  //save address to array
+        }
+        required = _required;
+    }
+
 
 }
