@@ -6,8 +6,7 @@ contract MultiSigWallet {
     //Deposit will fire when ether is deposited to this multisigwallet
     //Submit will fire when a transaction is submitted waiting for the other owners to approve
     //Approve will fire when the transaction is approved.
-    //Revoke will fire when owners change their mind and revoke approved transaction. (But I am not
-    // sure here. revoke may probably mean rejecting transaction also).
+    //Revoke will fire when owners change their mind and revoke approved transaction.
     //Execute will fire when there is sufficient amount approvals, then the contract(Does
     // "contract" mean "transaction"?) can be executed.
     event Deposit(address indexed sender, uint amount);
@@ -93,6 +92,31 @@ contract MultiSigWallet {
         emit Approve(msg.sender, _txId);
     }
 
+    function _getApprovalCount(uint _txId) private view returns(uint) {
+        uint count;
+        for(uint i=0; i<owners.length; i++){
+            if(approved[_txId][owners[i]] == true) {
+                count +=1;
+            }
+        }
+        return count;
+    }
+
+    function execute(uint _txId) external txExists(_txId) notExecuted(_txId){
+        uint countNumber = _getApprovalCount(_txId);
+        require(countNumber >= required, "execution failed because not enough approvals");
+        Transaction storage transaction = transactions[_txId];
+        transaction.executed = true;
+        (bool success, ) = transaction.to.call{value: transaction.value}(transaction.data);
+        require(success, "failed to execute");
+        emit Execute(_txId);
+    }
+
+    function revoke(uint _txId) external onlyOwner txExists(_txId) notExecuted(_txId){
+        require(approved[_txId][msg.sender] == true, "you have not approved yet to ");
+        approved[_txId][msg.sender] == false;
+        emit Revoke(msg.sender, _txId);
+    }
 
 
 }
