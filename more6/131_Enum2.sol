@@ -40,10 +40,5 @@ contract EnumExample {
     function setLarge3() external {
         choice3 = MyChoices3.SIZE3;
     }
-    /*
-    1. You cannot use public or other tags for Enums
-    2. You cannot iterate: no for loop, no while loop, no ".length"
-    3. You cannot store address, bool, uint, int or string in enum
-    4. Enums restrict a variable to have one of only a few predefined values
-    */
+
 }

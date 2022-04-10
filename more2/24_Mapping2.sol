@@ -9,4 +9,5 @@ contract Mapping {
         balanceArray[0] = _newBalance;
         
     }
+
 }
