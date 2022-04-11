@@ -3,7 +3,7 @@
 pragma solidity >=0.8.7;
 
 contract Exercise2 {
-    //FUNCTION 1
+    //FUNCTION 1 - CREATE AN ARRAY OF EVEN NUMBERS
     uint[] myArray;
     function setEvens() external {
         for(uint i=0; i<20; i++) {
@@ -57,5 +57,38 @@ contract Exercise2 {
             }
         }
         revert("value is not in array");
+    }
+
+    //ORDER THE ARRAY ELEMENTS FROM SMALL TO BIG
+    uint[] arr = [89, 23, 111, 54, 2, 3, 52, 0];
+    function orderArray() external {
+        for(uint a = 0; a<arr.length-1; a++){
+            uint x;
+            for(uint i = 0; i<arr.length-1; i++) {
+                
+                if(arr[i] >= arr[i+1]) {
+                    x = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+1] = x;
+                } 
+            }
+        }
+
+    }
+
+    function returnArr() external view returns(uint[] memory) {
+        return arr;
+    }
+
+    //REMOVE DUPLICATE NUMBERS IN AN ARRAY
+    uint[] arr2 = [20, 15, 10, 2, 15];
+    function removeDuplicate() external {
+        
+        for(uint i = 0; i<array.length-1, i++){
+            arr2[i]
+        }
+    }
+    function returnArr2() external view returns(uint[] memory){
+        return arr2;
     }
 }
