@@ -1,44 +1,36 @@
-//SPDX-License-Identifier: GPL-3.0
+//SPDX-License-Identifier: MIT
+
 pragma solidity >=0.8.7;
 
 contract EnumExample {
 
-    //Here we create our Enum list with 4 Enum values
-    enum Hamburgers {CHILDREN, SIZE1, SIZE2, SIZE3}
+    enum Hamburgers {CHILDREN, SMALL, MEDIUM, BIG}
 
-    //We create an Enum variable.
     Hamburgers public myChoice;
 
-    //First way: set an Enum value for our Enum variable
-    function setChoice() external {
-        myChoice = Hamburgers(3);
+    function setValue1() external {
+        myChoice = Hamburgers.MEDIUM;
     }
 
-    //Second way: the same function above
-    function setChoice2() external {
-        myChoice = Hamburgers.SIZE3;
+    function setValue2() external {
+        myChoice = Hamburgers(2);
     }
 
-    //Returning Enum variable
     function getEnum1() external view returns(Hamburgers) {
         return myChoice;
     }
 
-    //Returning an Enum value
     function getEnum2() external pure returns(Hamburgers) {
-        return Hamburgers(2);
+        return Hamburgers(0);
     }
 
-    //Returning an Enum value (same as above, written differently)
     function getEnum3() external pure returns(Hamburgers) {
-        return Hamburgers.SIZE2;
+        return Hamburgers.CHILDREN;
     }
 
-    //Return and make a math operation on Enum value. We need typecast Enum value.
-    function getEnum4() external pure returns(uint8) {
-        return uint8(Hamburgers.SIZE2) + 3;
+    function getEnum4() external view returns(uint) {
+        return uint(myChoice) + 5;
     }
 
-    //Create an Enum array named "myBurgers"
-    Hamburgers[] myBurgers = [Hamburgers(2), Hamburgers(1)];
+    Hamburgers[] public myArray = [Hamburgers(1), Hamburgers.BIG];
 }
