@@ -81,11 +81,38 @@ contract Exercise2 {
     }
 
     //REMOVE DUPLICATE NUMBERS IN AN ARRAY
+    /* I created two for loops, first for loop is saving the number value, the second for loop is comparing this number
+    value to the next members of the array. Thats why I am saying "uint i = a+1". If I was going to say "uint i = 0" then
+    it would compare the first for loop value to the second for loop value and they would be the same values. And it would delete
+    values even if they are not duplicate.
+    Then I am removing the duplicate by replacing it with the element at the last place of the array. Then a simple pop()
+    I know by this the array order changes, by in case it works and removes duplicates. If I want to protect order, then
+    I would have to create a new order.
+    [2, 1, 1, 5]    [2, 1, 1, 5]    [2, 1, 1, 5]
+       \                \                   \
+        \ \  \           \  \                \
+    [2, 1, 1, 5]    [2,1, 1, 5]     [2, 1, 1, 5]
+    First loop cycle of the First loop: I am comparing 2 to 1, 1, 5
+    Second loop cycle of the Second loop: I am comparing 1 to 1,5
+    Third loop cycle of the Third loop: I am comparing 1  to 5
+    As I made "a<arr2.length-1;" I am not comparing 5 to any number. And loop finishes.
+    */
     uint[] arr2 = [20, 15, 10, 2, 15];
+    //uint[] arr2 = [2,1,1,5];
     function removeDuplicate() external {
-        
-        for(uint i = 0; i<array.length-1, i++){
-            arr2[i]
+        for(uint a = 0; a<arr2.length-1; a++){
+            
+            uint x = arr2[a];
+            for(uint i = a+1; i<arr2.length; i++) {
+                if(x == arr2[i]) {
+                    arr2[i] = arr2[arr2.length-1];
+                    arr2.pop();
+                }
+
+
+            }
+
+
         }
     }
     function returnArr2() external view returns(uint[] memory){
