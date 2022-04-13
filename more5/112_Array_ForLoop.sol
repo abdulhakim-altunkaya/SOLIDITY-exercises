@@ -16,7 +16,7 @@ contract Exercise2 {
         return myArray;
     }
 
-
+    enum 
     //THE SAME AS ABOVE, BUT I DONT NEED A SEPARATE VIEW FUNCTION
     function setEvens2() pure external returns(uint[] memory) {
         uint[] memory evens = new uint[](20);

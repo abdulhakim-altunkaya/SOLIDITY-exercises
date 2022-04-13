@@ -9,6 +9,8 @@ interface IERC721 {
 contract EnglishAuction {
     event Start();
     event Bid(address indexed sender, uint amount);
+    event Withdraw(address indexed bidder, uint amount);
+    event End(address highestBidder, uint amount);
 
     //the NFT that we will sell. It will not change for the duration
     // of the contract. Thats why it is immutable.
@@ -71,4 +73,27 @@ contract EnglishAuction {
         emit Bid(msg.sender, msg.value);
     }
 
+    function withdraw() external {
+        uint bal = bids[msg.sender];
+        bids[msg.sender] = 0;
+        payable(msg.sender).transfer(bal);
+        emit Withdraw(msg.sender, bal);
+    }
+
+    function end() external {
+        require(started, "not started");
+        require(!ended, "ended");
+        require(block.timestamp >= endAt, "not ended");
+
+        ended = true;
+        if(highestBidder != address(0)) {
+            nft.transferFrom(address(this), highestBidder, nftId);
+            seller.transfer(highestBid);
+        } else {
+            nft.transferFrom(address(this), seller, nftId);
+        }
+
+        emit End(highestBidder, highestBid);
+
+    }
 }
