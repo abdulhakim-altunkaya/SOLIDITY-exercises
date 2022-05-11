@@ -3,6 +3,7 @@
 pragma solidity >=0.8.7;
 
 contract PayableSummary {
+    //stores ether inside this contract.
     constructor() payable{}
 
     function foo() external payable{}
@@ -12,6 +13,8 @@ contract PayableSummary {
     receive() external payable{}
 
     **** 
+    //MSG.SENDER --> ANY ACCOUNT(_to) ETHER TRASNFER
+    // IT does NOT send ether from this contract. It sends ethers of msg.sender to any account
     function bazz(address payable _to) external payable{
         (bool success, ) = _to.call{value: msg.value}("");
         require(success, "transaction failed");

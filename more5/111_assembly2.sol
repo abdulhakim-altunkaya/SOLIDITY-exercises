@@ -6,7 +6,7 @@ contract Assembly {
 
     function assemblySize(address a) external view returns(string memory){
         uint size;
-        address myAddress = a;
+        address myAddress = a;//why i need this line?
         assembly {
            size := extcodesize(myAddress)
         }
