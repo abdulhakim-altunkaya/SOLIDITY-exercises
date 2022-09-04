@@ -19,4 +19,10 @@ contract ModifierTest {
         require(!paused, "paused");
         myNumber +=30;
     }
+    uint x = 6;
+    function checkNumber(uint a) external {
+        require(a > 5, "no you cant do that");
+        x = x+a;
+        assert(x > 6);
+    }
 }

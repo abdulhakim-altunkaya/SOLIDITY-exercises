@@ -118,4 +118,21 @@ contract Exercise2 {
     function returnArr2() external view returns(uint[] memory){
         return arr2;
     }
+
+    //REMOVE SPECIFIC INDEX
+    uint[] arr4 = [1, 2, 999, 3, 4];
+
+    function removeIndex(uint index) external {
+        uint lastNumber = arr4[arr4.length-1];
+        arr4[index] = lastNumber;
+        arr4.pop();
+    }
+
+    functino removeIndexOrdered(uint index) external {
+        for(uint i = index; i<arr4.length-1; i++) {
+            arr4[i] = arr4[i+1];
+            arr4.pop();
+        }
+    }
+
 }
