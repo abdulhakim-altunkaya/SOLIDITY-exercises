@@ -2,7 +2,7 @@
 
 pragma solidity >=0.8.1;
 
-import "./Child.sol";
+import "./153_B_Child.sol";
 
 //This is to show how to create deploy a contract from another contract.
 /*Normally we deploy contracts by ourselves. Here we are deploying it from another contract.
@@ -25,6 +25,7 @@ contract Parent {
     function getName() external view returns(string memory) {
         return child.name();
     }
+
 
 
 }
