@@ -13,7 +13,10 @@ contract Blockhash1 {
     function getBlockHash1() external view returns(bytes32) {
         return blockhash(block.number-1);
     }
-
+    //If I understand right, imagine you have 10 contracts on polygon testnet
+    //And you have the same 10 function below in all contracts.
+    //When you call this function in all contract without leaving time difference, they will
+    //have same block.number number and consequently same blockhash. 
     function getHashNumber1() external view returns(uint256) {
         return uint256(blockhash(block.number-1));
     }
