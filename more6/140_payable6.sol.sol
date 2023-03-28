@@ -27,6 +27,12 @@ contract Deposit {
     function deposit3() external payable {
     }
 
+    //ACCOUNT --> CONTRACT
+    //Here the user must pass deposit value inside msg.value input area as well.
+    //When you deploy this with website, then by using web3 function you wont need to deposit it.
+    function depositUsingParameter() public payable { 
+        require(msg.value > 1*(10**18));
+    }
 
     //Function Caller -> Contract
     fallback() external payable{}
